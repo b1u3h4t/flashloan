@@ -1,11 +1,9 @@
-pragma solidity 0.6.2;
+pragma solidity ^0.6.2;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 
-import "../interfaces/IFlashLoanReceiver.sol";
-import "../interfaces/IFlashLoanProvider.sol";
-
+import "./interfaces/IFlashLoanProvider.sol";
 import "./lib/FlashLoanReceiver.sol";
 
 contract FlashLoanExample is FlashLoanReceiver {

@@ -1,4 +1,10 @@
+pragma solidity ^0.6.2;
+
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/math/SafeMath.sol";
+import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
+
+import "../interfaces/IFlashLoanReceiver.sol";
 
 abstract contract FlashLoanReceiver is IFlashLoanReceiver, Ownable {
     using SafeERC20 for IERC20;
@@ -19,12 +25,13 @@ abstract contract FlashLoanReceiver is IFlashLoanReceiver, Ownable {
         address token,
         uint256 amount
     ) internal {
+        address payable _to = address(uint160(to));
         if (token == ETH) {
-            (bool success, ) = to.call{value: amount}("");
+            (bool success, ) = _to.call{value: amount}("");
             require(success == true, "Bad payback ETH");
             return;
         }
-        IERC20(token).safeTransfer(to, amount);
+        IERC20(token).safeTransfer(_to, amount);
     }
 
     function balance(address token, address account)
