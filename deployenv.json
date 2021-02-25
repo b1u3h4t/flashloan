@@ -1,5 +1,5 @@
 {
-    "bsctest": {
-        "provider": "0x190CcFff26731039CaAE22abe3d3dAB98f3D206D"
+    "rinkeby": {
+        "provider": "0x5640680FE7685022006c34e75568AB3a048679cD"
     }
 }

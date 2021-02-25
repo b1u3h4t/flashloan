@@ -14,11 +14,10 @@ contract FlashLoanExample is FlashLoanReceiver {
         flashLoanProvider = IFlashLoanProvider(_flashLoanProvider);
     }
 
-    function execute(
+    function executeOperation(
         address token,
         uint256 amount,
         uint256 fee,
-        address back,
         bytes calldata //unused
     ) external override {
         require(
@@ -28,7 +27,7 @@ contract FlashLoanExample is FlashLoanReceiver {
 
         //To do something...
 
-        payback(back, token, amount.add(fee));
+        payback(flashLoanProvider.controller(), token, amount.add(fee));
     }
 
     function flashloan(

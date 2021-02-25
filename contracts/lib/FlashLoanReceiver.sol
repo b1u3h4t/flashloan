@@ -16,7 +16,7 @@ abstract contract FlashLoanReceiver is IFlashLoanReceiver, Ownable {
         uint256 amount
     );
 
-    address constant ETH = address(0x0000000000000000000000000000000000000000);
+    address constant ETH = address(0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE);
 
     receive() external payable {}
 
